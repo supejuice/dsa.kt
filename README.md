@@ -1,7 +1,5 @@
 # DSA with Kotlin
 
----
-
 ## Loops
 
 ### Forward Loop  
@@ -17,8 +15,6 @@ for (i in 9 downTo 0) {
     println(i) // prints 9 to 0
 }
 ```
-
----
 
 ## Arrays
 
@@ -130,7 +126,7 @@ println("Cloned: ${clone.toList()}")
 println("Equals copy? ${arr.contentEquals(copy)}")
 ```
 
----
+
 
 ## Strings
 
@@ -194,7 +190,7 @@ val diffs = cleaned.zipWithNext { a, b -> "$a->$b" }
 println("Adjacent pairs: $diffs")
 ```
 
----
+
 
 ## Stack
 
@@ -215,7 +211,7 @@ val peek = stack.last()
 println(peek) // 10
 ```
 
----
+
 
 ## Null-Safety
 
@@ -224,7 +220,7 @@ println(peek) // 10
 val len = userName?.length ?: 0
 ```
 
----
+
 
 ## Comparisons  
 
@@ -247,8 +243,6 @@ val floatMin = -Float.MAX_VALUE
 val charMin = Char.MIN_VALUE
 ```
 
----
-
 ## Filtering String or Array
 
 ### Example Usage  
@@ -259,8 +253,6 @@ val arr = intArrayOf(1, 2, 3, 4, 5)
 val evens = arr.filter { it % 2 == 0 }  // List<Int>: [2, 4]
 ```
 
----
-
 ## Char Extensions  
 
 ### Methods  
@@ -269,3 +261,30 @@ val evens = arr.filter { it % 2 == 0 }  // List<Int>: [2, 4]
 - `isDigit()`
 - `isUpperCase()`
 - `isLowerCase()`
+
+## DFS (Depth-First Search)
+
+- DFS is a recursive algorithm for traversing or searching tree/graph data structures.
+- It explores as far as possible along each branch before backtracking.
+- Useful for problems like flood fill, connected components, pathfinding, etc.
+- Can be implemented recursively or with an explicit stack.
+
+### Flood Fill Example  
+```kotlin
+class Solution {
+    fun floodFill(image: Array<IntArray>, sr: Int, sc: Int, color: Int): Array<IntArray> {
+        val originalColor = image[sr][sc]
+        fun dfs(r: Int, c: Int) {
+            if (r < 0 || c < 0 || r > image.lastIndex || c > image.first().lastIndex) return
+            if (image[r][c] == color || image[r][c] != originalColor) return
+            image[r][c] = color
+            dfs(r + 1, c)
+            dfs(r - 1, c)
+            dfs(r, c + 1)
+            dfs(r, c - 1)
+        }
+        dfs(sr, sc)
+        return image
+    }
+}
+```
